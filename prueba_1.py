@@ -24,8 +24,9 @@ def decodificar():
             buscarCoordenadas(listaContenido)
 
 def test():
-    for x in range(90):
-        
+    for linea in file.readlines():
+        listaContenido = linea.split(" ")
+        print(listaContenido[-1])
 
 
 test()
