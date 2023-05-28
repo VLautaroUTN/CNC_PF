@@ -26,7 +26,19 @@ def decodificar():
 def test():
     for linea in file.readlines():
         listaContenido = linea.split(" ")
-        print(listaContenido[-1])
+        ordenes = []
+        try:
+            ordenes = [listaContenido[0], listaContenido[1], listaContenido[2]]
+        except:
+            print("no linea de ordenes")
+        print(ordenes)
 
 
-test()
+def test2():
+    cantLineas = 0
+    for lineas in file.readlines():
+        cantLineas += 1
+    for x in range(cantLineas):
+        asd
+
+test2()
