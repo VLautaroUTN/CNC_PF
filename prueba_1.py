@@ -1,41 +1,31 @@
-file = open('test.ngc', 'r')
+file = open('output_2_0001.ngc', 'r')
 
-def leer():
-    for x in range(4):
-        contents = file.readline()
-        print(contents)
-        file.close()
-
-def tipo():
-    contents = file.readline()
-    print(type(contents))
-    file.close()
-
+def buscarCoordenadas(listaContenidoPrima):
+    x_valor = None
+    y_valor = None
+    for val in listaContenidoPrima:
+        if 'X' in val:
+            x_valor = val
+        if 'Y' in val:
+            y_valor = val
+    return x_valor, y_valor
 
 
-"""------------------------------------------------------------------
-Método string split
+def decodificar():
+    for x in range(67):
+        contenido = file.readline()
+        listaContenido = contenido.split(" ")
+        #print(listaContenido[0])
+        if listaContenido[0] == "G00":
+            #print("MOVIMIENTO")
+            buscarCoordenadas(listaContenido)
+        elif listaContenido[0] == "G01":
+            #print("GRABADO")
+            buscarCoordenadas(listaContenido)
 
-El split() function, es usado usualmente para dividir strings.
-El  método split()
+def test():
+    for x in range(90):
+        
 
-Template: string.split(separador, maxdivision)
 
-separador: El delimitador del string. Tú divides el string basado en estos caracteres. Por ejemplo (" "), (":"), (";"), etc.
-
-maxdivision: El número de veces a dividir el string basados en el separador. Si, no especificamos éste número o ponemos -1, el string tomara todas las occurrencias del separator.
-
-Este metodo retorna una lista de substrings delimitados por el separator.
-Ejemplos
-
-String dividido con espacio en blanco " "
-
-string = "freeCodeCamp is fun."
-print(string.split(" "))
-
-Delimitador (" ") - Python3.7
-
-Resultado:
-
-['freeCodeCamp', 'is', 'fun.']
-"""
+test()
