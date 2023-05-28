@@ -42,3 +42,12 @@ def test2():
         asd
 
 test2()
+
+
+""" 
+El problema es que al final de cada linea agrega un /n
+¿Debo sacar ese /n? ¿Es necesario?
+Objetivo: Crear a partir del archivo .ngc otro archivo
+que solo contenga [bool, int, int ]
+                  [servo, x ,  y  ]
+"""
