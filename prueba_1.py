@@ -32,6 +32,15 @@ entrada.close()
 salida.close()
 
 """ 
+proxima tarea #2: Filtrar como se elimino F pero con Z
+asi despues solo tendria que filtrar entre lineas con 3 elementos y con 1
+
+esos dos tipos ->
+G00 
+G0x X5.000000 Y5.000000
+
+se guardarian solo los que tengan 3 elementos
+
 El problema es que al final de cada linea agrega un /n
 ¿Debo sacar ese /n? ¿Es necesario?
 Objetivo: Crear a partir del archivo .ngc otro archivo
