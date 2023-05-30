@@ -1,48 +1,35 @@
-file = open('output_2_0001.ngc', 'r')
+entrada = open('output_2_0001.ngc', 'r')
+salida = open('coordenadas.ngc', 'w')
 
 def buscarCoordenadas(listaContenidoPrima):
-    x_valor = None
-    y_valor = None
-    for val in listaContenidoPrima:
-        if 'X' in val:
-            x_valor = val
-        if 'Y' in val:
-            y_valor = val
-    return x_valor, y_valor
-
+    if len(listaContenidoPrima) >= 3:
+        val = listaContenidoPrima[1]
+        x = val[1:10]
+        print('---------- ', x, '----------')
 
 def decodificar():
     for x in range(67):
-        contenido = file.readline()
+        contenido = entrada.readline()
         listaContenido = contenido.split(" ")
-        #print(listaContenido[0])
-        if listaContenido[0] == "G00":
-            #print("MOVIMIENTO")
-            buscarCoordenadas(listaContenido)
+        
+        if listaContenido[0] == "G00": #comprueba si el primer elemento es G00
+            if 'F' in listaContenido[-1]: # si el ultimo elemento contiene una F lo elimina
+                print('CORTANDO')
+                listaContenido.pop(-1)
+            #print('M', listaContenido, len(listaContenido))
+            buscarCoordenadas(listaContenido) # envia la lista cortada a la funcion buscar coordenadas
+        
         elif listaContenido[0] == "G01":
-            #print("GRABADO")
+            if 'F' in listaContenido[-1]:
+                print('CORTANDO')
+                listaContenido.pop(-1)
+            #print('G', listaContenido, len(listaContenido))
             buscarCoordenadas(listaContenido)
 
-def test():
-    for linea in file.readlines():
-        listaContenido = linea.split(" ")
-        ordenes = []
-        try:
-            ordenes = [listaContenido[0], listaContenido[1], listaContenido[2]]
-        except:
-            print("no linea de ordenes")
-        print(ordenes)
+decodificar()
 
-
-def test2():
-    cantLineas = 0
-    for lineas in file.readlines():
-        cantLineas += 1
-    for x in range(cantLineas):
-        asd
-
-test2()
-
+entrada.close()
+salida.close()
 
 """ 
 El problema es que al final de cada linea agrega un /n
