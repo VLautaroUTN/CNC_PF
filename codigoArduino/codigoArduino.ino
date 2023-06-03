@@ -1,10 +1,13 @@
+#define DEBUG(a) Serial.println(a);
+
 void setup() {
   Serial.begin(9600);
 }
 
 void loop() {
   if(Serial.available() > 0){
-    char texto = Serial.read();
+    String texto = Serial.readStringUntil('\n');
     Serial.println(texto);
+    DEBUG(texto);
   }
 }
