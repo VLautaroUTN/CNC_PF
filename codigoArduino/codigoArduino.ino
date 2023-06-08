@@ -25,10 +25,17 @@ void loop() {
     
     int ordenint = orden.toInt();
     int intValX = valX.toInt();
-    int intValYf = valY.toInt();
+    int intValY =valY.toInt();
 
-    motorX.step(intValXf);
-    motorY.setp(intValYf);
+    if (orden == 1){
+       servo.write(140);
+    }
+    else{
+        servo.write(120);
+    }
+
+    motorX.step(intValX);
+    motorY.setp(intValY);
 
     Serial.println(1);
   }
