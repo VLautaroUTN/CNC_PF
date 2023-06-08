@@ -1,17 +1,20 @@
 #include <Stepper.h>
 
 const int pasosPorVuelta = 20;
+const velocidadMotores = 250;
 
 //MotorX
 Stepper motorX(pasosPorVuelta, 8,9,10,11);
+//Motor Y
 Stepper motorY(pasosPorVuelta, 12,13,14,15);
 
 
 void setup() {
   Serial.begin(9600);
-  motorX.setSpeed(100);
-  motorY.setSpeed(100);
+  motorX.setSpeed(velocidadMotores);
+  motorY.setSpeed(velocidadMotores);
 }
+
 
 void loop() {
   if(Serial.available() > 0){
@@ -21,8 +24,8 @@ void loop() {
     String valY = comunicacion.substring(10);
     
     int ordenint = orden.toInt();
-    float intValX = valX.toInt();
-    float intValYf = valY.toInt();
+    int intValX = valX.toInt();
+    int intValYf = valY.toInt();
 
     motorX.step(intValXf);
     motorY.setp(intValYf);
