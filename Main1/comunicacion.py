@@ -20,8 +20,14 @@ def comunicacion(archivo, puerto = "COM4"): #Recibe como datos el nombre
         arduino.write(mensaje.encode('utf-8'))
         time.sleep(0.5)
         respuesta = arduino.readline()
+        
+        """ DEBE HABER UNA COMPROBACION
+        LA ORDEN DEBERIA HABERSE COMPLETADO
+        ANTES DE PASAR A LA SIGUIENTE
+        
         if respuesta == 1: # Aqui va la comprobacion que la respuesta de arduino sea 1
             pass
+        """
 
     arduino.close()
     coorfile.close()
