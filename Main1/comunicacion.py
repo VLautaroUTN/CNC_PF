@@ -8,7 +8,6 @@ def comunicacion(archivo, puerto = "COM4"): #Recibe como datos el nombre
     arduino = serial.Serial(puerto, 9600)
     time.sleep(2)
 
-
     for lineas in coorfile:
         linea = lineas.split(' ')
         if linea[0] == 'G01':
