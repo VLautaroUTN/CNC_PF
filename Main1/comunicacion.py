@@ -1,7 +1,7 @@
 import serial, time
 
 
-def comunicacion(archivo, puerto = "COM4"): #Recibe como datos el nombre 
+def comunicacion(string: archivo, puerto = "COM4"): #Recibe como datos el nombre 
     # del archivo y el puerto de conexion (VALOR POR DEFECTO COM4)
     coorfile = open(archivo, 'r')   
     mensaje = ''
@@ -24,7 +24,7 @@ def comunicacion(archivo, puerto = "COM4"): #Recibe como datos el nombre
         """ DEBE HABER UNA COMPROBACION
         LA ORDEN DEBERIA HABERSE COMPLETADO
         ANTES DE PASAR A LA SIGUIENTE
-        
+
         if respuesta == 1: # Aqui va la comprobacion que la respuesta de arduino sea 1
             pass
         """
