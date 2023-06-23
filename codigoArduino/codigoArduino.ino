@@ -25,10 +25,12 @@ void setup() {
 void loop() {
   if(Serial.available() > 0){
     String comunicacion = Serial.readStringUntil('\n');
-    String orden = comunicacion.substring(1,2);
+    String orden = comunicacion.substring(2,3);
     String valX = comunicacion.substring(3,9);
     String valY = comunicacion.substring(10);
     
+    Serial.println("-> " + orden)
+
     int ordenint = orden.toInt();
     int intValX = valX.toInt();
     int intValY =valY.toInt();
