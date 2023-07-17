@@ -32,6 +32,7 @@ def filtrar(lista):
             lista[pos] = x.strip('\n')
     return lista
 
+# Capaz pueda usar esta misma funcion para filtrar y retornar las coordenadas
 
 def buscarCoordenadas(listaContenidoPrima):
     if len(listaContenidoPrima) ==3:
