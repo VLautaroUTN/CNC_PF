@@ -29,8 +29,15 @@ def filtrar(lista):
             lista.remove(x)
         else:
             pos = lista.index(x)
-            lista[pos] = x.strip('\n')
-    return lista
+            lista[pos] = x.strip('XY\n')
+
+    if lista[0] == "G00":
+        lista[0] = 0
+    else:
+        lista[0] = 1
+
+    if len(lista) == 3:
+        return lista
 
 # Capaz pueda usar esta misma funcion para filtrar y retornar las coordenadas
 
@@ -49,7 +56,7 @@ def decodificar2():
         if listaContenido[0] == "G00" or listaContenido[0] == "G01":
             listaContenidoFiltrada = filtrar(listaContenido)
             print(listaContenidoFiltrada)
-            coordenadas = buscarCoordenadas(listaContenidoFiltrada)
+            #coordenadas = buscarCoordenadas(listaContenidoFiltrada)
             """
             if coordenadas != None:
                 coordenadas.insert(0, listaContenido[0])
