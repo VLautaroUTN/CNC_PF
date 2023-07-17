@@ -25,8 +25,11 @@ def filtrar(lista):
     for x in reversed(lista):
         if 'F' in x:
             lista.remove(x)
-        if 'Z' in x:
+        elif 'Z' in x:
             lista.remove(x)
+        else:
+            pos = lista.index(x)
+            lista[pos] = x.strip('\n')
     return lista
 
 
@@ -34,22 +37,24 @@ def buscarCoordenadas(listaContenidoPrima):
     if len(listaContenidoPrima) ==3:
         valX = listaContenidoPrima[1]
         valY = listaContenidoPrima[2]
-        #x = valX[1:9]
-        #y = valY[1:9]
         valores = [valX[1:7], valY[1:7]]
         return valores
 
 
 def decodificar2():
     for linea in entrada:
-        listaContenido = linea.split(' ')
+        listaContenido = linea.split(' ') #Transformo cada linea en una lista
+
         if listaContenido[0] == "G00" or listaContenido[0] == "G01":
             listaContenidoFiltrada = filtrar(listaContenido)
+            print(listaContenidoFiltrada)
             coordenadas = buscarCoordenadas(listaContenidoFiltrada)
+            """
             if coordenadas != None:
                 coordenadas.insert(0, listaContenido[0])
                 print(coordenadas)
                 auxiliar = 0
+
                 for x in coordenadas:
                     auxiliar += 1
                     if auxiliar == 3:
@@ -57,6 +62,7 @@ def decodificar2():
                     else:
                         salida.write(x + ' ')
                 salida.write('\n')
+                """
 
 if __name__ == "__main__":
     decodificar2()
