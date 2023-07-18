@@ -35,44 +35,34 @@ def filtrar(lista):
         lista[0] = 0
     else:
         lista[0] = 1
-
     if len(lista) == 3:
         return lista
 
 # Capaz pueda usar esta misma funcion para filtrar y retornar las coordenadas
 
-def buscarCoordenadas(listaContenidoPrima):
-    if len(listaContenidoPrima) ==3:
-        valX = listaContenidoPrima[1]
-        valY = listaContenidoPrima[2]
-        valores = [valX[1:7], valY[1:7]]
-        return valores
 
-
-def decodificar2():
+def decodificar():
     for linea in entrada:
         listaContenido = linea.split(' ') #Transformo cada linea en una lista
 
         if listaContenido[0] == "G00" or listaContenido[0] == "G01":
             listaContenidoFiltrada = filtrar(listaContenido)
-            print(listaContenidoFiltrada)
-            #coordenadas = buscarCoordenadas(listaContenidoFiltrada)
-            """
-            if coordenadas != None:
-                coordenadas.insert(0, listaContenido[0])
-                print(coordenadas)
-                auxiliar = 0
 
-                for x in coordenadas:
-                    auxiliar += 1
-                    if auxiliar == 3:
+            if listaContenidoFiltrada != None:
+                variableAuxiliar = 0
+                for x in listaContenidoFiltrada:
+                    variableAuxiliar += 1
+                    if not variableAuxiliar == 1:
+                        x = float(x)
+                        x = "{:.2f}".format(x)
+                    if variableAuxiliar == 3:
                         salida.write(x)
                     else:
-                        salida.write(x + ' ')
+                        salida.write(str(x) + "/")
                 salida.write('\n')
-                """
+
 
 if __name__ == "__main__":
-    decodificar2()
+    decodificar()
     entrada.close()
     salida.close()
