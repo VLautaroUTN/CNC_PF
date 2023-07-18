@@ -19,24 +19,22 @@ def filtrar(lista):
     if len(lista) == 3:
         return lista
 
-# Capaz pueda usar esta misma funcion para filtrar y retornar las coordenadas
-
 
 def decodificar():
     for linea in entrada:
-        listaContenido = linea.split(' ') #Transformo cada linea en una lista
+        lista_contenido = linea.split(' ')  # Transformo cada linea en una lista
 
-        if listaContenido[0] == "G00" or listaContenido[0] == "G01":
-            listaContenidoFiltrada = filtrar(listaContenido)
+        if lista_contenido[0] == "G00" or lista_contenido[0] == "G01":
+            lista_contenido_filtrada = filtrar(lista_contenido)
 
-            if listaContenidoFiltrada != None:
-                variableAuxiliar = 0
-                for x in listaContenidoFiltrada:
-                    variableAuxiliar += 1
-                    if not variableAuxiliar == 1:
+            if lista_contenido_filtrada is not None:
+                variable_auxiliar = 0
+                for x in lista_contenido_filtrada:
+                    variable_auxiliar += 1
+                    if not variable_auxiliar == 1:
                         x = float(x)
                         x = "{:.2f}".format(x)
-                    if variableAuxiliar == 3:
+                    if variable_auxiliar == 3:
                         salida.write(str(x) + "_")
                     else:
                         salida.write(str(x) + "/")
