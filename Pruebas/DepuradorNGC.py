@@ -55,7 +55,10 @@ def decodificar():
                     if not variableAuxiliar == 1:
                         x = float(x)
                         x = "{:.2f}".format(x)
-                    salida.write(str(x) + "/")
+                    if variableAuxiliar == 3:
+                        salida.write(str(x) + "_")
+                    else:
+                        salida.write(str(x) + "/")
                 salida.write('\n')
 
 
