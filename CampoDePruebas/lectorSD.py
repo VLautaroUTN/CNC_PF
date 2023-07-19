@@ -11,8 +11,9 @@ def setup():
 
 
 def loop():
+    numero_de_linea = 0
     while True:
-        pass
+        numero_de_linea += 1
 
 if __name__ == "__main__":
     setup()
