@@ -35,7 +35,7 @@ def decodificar():
                         x = float(x)
                         x = "{:.2f}".format(x)
                     if variable_auxiliar == 3:
-                        salida.write(str(x) + "_")
+                        salida.write(str(x) + "/" + "_")
                     else:
                         salida.write(str(x) + "/")
                 salida.write('\n')

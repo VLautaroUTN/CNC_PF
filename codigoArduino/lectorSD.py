@@ -6,6 +6,7 @@ def setup():
     while True:
         letra = archivo.read(1) #Lee de a 1 caracter por vez
         if not letra: break # Se comporta como el archivo.available()
+        if letra == "_": break
         print(letra)
 
 
