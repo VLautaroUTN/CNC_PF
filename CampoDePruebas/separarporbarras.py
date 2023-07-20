@@ -1,9 +1,24 @@
-texto = "0/39.58/143.79/_1/39.51/3.50/_"
+lista = []
 
 def setup():
-    array = texto.split("_")
-    print(array)
+    archivo = open("coordenadas.ngc", 'r')
+    elemento = ""
+    while True:
+        letra = archivo.read(1) #Lee de a 1 caracter por vez
 
+        if not letra: break # Se comporta como el archivo.available()
+
+        if letra == "_": #  Si la letra es un guion se guarda el string "elemento"
+                        # en una lista y posteriormente se reinicia elemento a vacio
+            lista.append(elemento)
+            elemento = ""
+        else:
+            elemento += letra
+
+
+def loop():
+    while True:
+        pass
 
 
 if __name__ == "__main__":
