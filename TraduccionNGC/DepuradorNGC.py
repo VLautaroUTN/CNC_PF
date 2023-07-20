@@ -38,7 +38,6 @@ def decodificar():
                         salida.write(str(x) + "/" + "_")
                     else:
                         salida.write(str(x) + "/")
-                salida.write('\n')
 
 
 if __name__ == "__main__":
