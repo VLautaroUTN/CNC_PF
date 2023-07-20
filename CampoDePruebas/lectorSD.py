@@ -16,6 +16,7 @@ def setup():
             elemento = ""
         else:
             elemento += letra
+    archivo.close()
 
 
 def loop():
