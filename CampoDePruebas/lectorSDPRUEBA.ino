@@ -3,8 +3,7 @@
 
 #define SDpin 10
 
-String coordenadas;
-char caracter
+String archivocompleto;
 
 File archivo;
 
@@ -31,8 +30,7 @@ void setup(){
     archivo = SD.open("coordenadas.txt", FILE_READ);
     if (archivo){
       while (archivo.available()){
-          caracter = archivo.read();
-          if(){}
+          archivocompleto = concat(archivo.read());
       }
     }
     else{
