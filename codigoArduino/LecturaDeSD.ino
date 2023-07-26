@@ -7,7 +7,7 @@ File archivo;
 
 void setup(){
     if (!SD.begin(SSpin)){return;}
-    archivo = SD.open("instrucciones.txt");
+    archivo = SD.open("coodenadas.ngc");
     while (archivo.available()){
         Serial.write(archivo.read());
     }
