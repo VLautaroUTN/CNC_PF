@@ -44,7 +44,7 @@ int dimensionarVectorDeDatos(){ // Devuelve la cantidad de valores que tiene coo
     archivo_coordenadas = SD.open(coorFileName, FILE_READ);
     if (archivo_coordenadas){
         while (archivo_coordenadas.available()){
-            if (archivo_coordenadas.read(); == "_"){
+            if (archivo_coordenadas.read() == "_"){
                 longitudDeDatos++;
             }
         }
