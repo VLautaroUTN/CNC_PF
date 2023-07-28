@@ -11,7 +11,7 @@ File archivo;
 int leerProgreso(){
     archivo_progreso = SD.open("progreso.txt", FILE_READ);
     if (archivo_progreso){
-        int progreso = archivo_progreso.seek(0);
+        int progreso = toInt(archivo_progreso.seek(0);
         return progreso;
     }else {Serial.println("Error al leer el progreso")}
 }
@@ -27,7 +27,7 @@ void guardarProgreso(int progreso){
 }
 
 
-void funcionqueseparaString(){
+void leerCoordenadas(){
 // Esta funcion leera buscando el signo _ y el signo /
 // Lo que hara es almacenar la posicion de cada uno
 // creara un substring temporal que sera guardado en los valores
@@ -37,14 +37,21 @@ void funcionqueseparaString(){
 // y guardaran unas nuevas coordenadas por vuelta que seran enviadas a los motores
 
     archivo_coordenadas = SD.open("coordenadas.txt", FILE_READ);
-    if(archivo_coordenadas){        
+    int progreso = leerProgreso();
+    int vueltas = 0;
+    if(archivo_coordenadas){
+
         while (archivo_coordenadas.available()){
             caracter = archivo.read();
             if (caracter == "_"){
+                progreso += 1;
+                guardarProgreso(progreso);
                 break;
             }
             conjunto_coordenadas = concat(caracter);
         }
+
+
     } else { Serial.println("error al leer las coordenadas");}
     archivo_coordenadas.close();
 }
