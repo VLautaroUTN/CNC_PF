@@ -13,9 +13,9 @@ File archivo_coordenadas;
 int leerProgreso(){
     File archivo_progreso = SD.open(coorFileName, FILE_READ);
     if (archivo_progreso){
-        int progreso = toInt(archivo_progreso.seek(0);
+        int progreso = toInt(archivo_progreso.seek(0));
         return progreso;
-    }else {Serial.println("Error al leer el progreso")}
+    }else {Serial.println("Error al leer el progreso");}
 }
 
 
@@ -43,8 +43,8 @@ int dimensionarVectorDeDatos(){ // Devuelve la cantidad de valores que tiene coo
     int longitudDeDatos = 0;
     archivo_coordenadas = SD.open(coorFileName, FILE_READ);
     if (archivo_coordenadas){
-        while (archivo_coordenadas.available(){
-            if (archivo_coordenadas.read() == "_"){
+        while (archivo_coordenadas.available()){
+            if (archivo_coordenadas.read(); == "_"){
                 longitudDeDatos++;
             }
         }
@@ -57,7 +57,7 @@ int dimensionarVectorDeDatos(){ // Devuelve la cantidad de valores que tiene coo
 void setup(){
     Serial.begin(9600);
     iniciarTarjeta();
-    dimensionarVectorDeDatos();
+    int arrayDeValores[dimensionarVectorDeDatos()];
 }
 
 
