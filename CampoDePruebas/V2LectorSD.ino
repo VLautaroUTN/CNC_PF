@@ -1,14 +1,17 @@
+//inicio
 #include <SPI.h>
 #include <SD.h>
 
 #define SDpin 10
+
+const char* coorFileName = "coordenadas.txt"
 
 File archivo_progreso;
 File archivo_coordenadas;
 
 
 int leerProgreso(){
-    archivo_progreso = SD.open("progreso.txt", FILE_READ);
+    File archivo_progreso = SD.open(coorFileName, FILE_READ);
     if (archivo_progreso){
         int progreso = toInt(archivo_progreso.seek(0);
         return progreso;
@@ -36,27 +39,29 @@ void iniciarTarjeta(){
 }
 
 
-void leerCoordenadas(){
-    char caracter;
-    archivo_coordenadas = SD.open("coordenadas.txt", FILE_READ);
+int dimensionarVectorDeDatos(){ // Devuelve la cantidad de valores que tiene coordenadas.txt
+    int longitudDeDatos = 0;
+    archivo_coordenadas = SD.open(coorFileName, FILE_READ);
     if (archivo_coordenadas){
-        while (archivo_coordenadas.available()){
-            caracter = archivo_coordenadas.read();
+        while (archivo_coordenadas.available(){
+            if (archivo_coordenadas.read() == "_"){
+                longitudDeDatos++;
+            }
         }
-    } else { Serial.println("error al leer las coordenadas");}
-}
-
-
-void dimensionarVectorDeDatos(){
-
+    }
+    archivo_coordenadas.close();
+    return longitudDeDatos;
 }
 
 
 void setup(){
     Serial.begin(9600);
     iniciarTarjeta();
+    dimensionarVectorDeDatos();
 }
 
 
 void loop(){
+
+
 }
