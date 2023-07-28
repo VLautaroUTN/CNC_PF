@@ -41,9 +41,10 @@ void leerCoordenadas(){
     int vueltas = 0;
     if(archivo_coordenadas){
 
+
         while (archivo_coordenadas.available()){
             caracter = archivo.read();
-            if (caracter == "_"){
+            if (caracter == "_" && v){
                 progreso += 1;
                 guardarProgreso(progreso);
                 break;
