@@ -6,7 +6,8 @@
 String conjunto_coordenadas;
 char caracter;
 
-File archivo;
+File archivo_progreso;
+File archivo_coordenadas;
 
 int leerProgreso(){
     archivo_progreso = SD.open("progreso.txt", FILE_READ);
