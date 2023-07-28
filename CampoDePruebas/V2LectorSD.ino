@@ -47,6 +47,11 @@ void leerCoordenadas(){
 }
 
 
+void dimensionarVectorDeDatos(){
+
+}
+
+
 void setup(){
     Serial.begin(9600);
     iniciarTarjeta();
