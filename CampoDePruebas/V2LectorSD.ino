@@ -4,7 +4,7 @@
 
 #define SDpin 10
 
-const char* coorFileName = "coordenadas.txt"
+const char* coorFileName = "coordenadas.txt";
 
 File archivo_progreso;
 File archivo_coordenadas;
@@ -13,7 +13,8 @@ File archivo_coordenadas;
 int leerProgreso(){
     File archivo_progreso = SD.open(coorFileName, FILE_READ);
     if (archivo_progreso){
-        int progreso = toInt(archivo_progreso.seek(0));
+        archivo_progreso.seek(0);
+        int progreso = archivo_progreso.read();
         return progreso;
     }else {Serial.println("Error al leer el progreso");}
 }
