@@ -71,7 +71,9 @@ void separarElementosEnLista(){
             }
             else{
                 if(caracter == "/"){
-                    arrayDeValores = new[]
+
+                    arrayDeValores = new float []
+
                     arrayDeValores[contador_de_guiones][GXY] = dato.toFloat();
                     dato = "";
                     GXY++;
