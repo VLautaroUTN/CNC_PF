@@ -5,8 +5,8 @@
 #define SDpin 10
 
 const char* coorFileName = "coordenadas.txt";
+float arrayDeValores[dimensionarListaDeDatos()][3];
 
-int arrayDeValores[dimensionarListaDeDatos()][3];
 
 File archivo_progreso;
 File archivo_coordenadas;
@@ -70,24 +70,23 @@ void separarElementosEnLista(){
         while (archivo_coordenadas.available()){
             caracter = archivo_coordenadas.read();
             if (caracter == "_"){
-                arrayDeValores[contador_de_guiones][GXY] = dato;
+                arrayDeValores[contador_de_guiones][GXY] = dato.toFloat();
                 dato = "";
                 GYX = 0;
                 contador_de_guiones++;
             }
             else{
                 if(caracter == "/"){
-                    arrayDeValores[contador_de_guiones][GXY] = dato;
+                    arrayDeValores[contador_de_guiones][GXY] = dato.toFloat();
                     dato = "";
                     GXY++;
                 }
-                else{dato.concat(caracter)}
+                else{dato.concat(caracter);}
             }
         }
     }
     archivo_coordenadas.close();
 }
-
 
 void setup(){
     Serial.begin(9600);
