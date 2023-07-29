@@ -59,12 +59,28 @@ void separarElementosEnLista(){
     archivo_coordenadas = SD.open(coorFileName, FILE_READ);
     int contador_de_guiones = 0;
     int numero_de_dato = 0;
+
+    int GXY = 0; 2 //Simboliza la posicion del dato 1er 2do o 3er posicion: G = tipo de orden, X = Coordenada x e Y= coordenada y
+    String dato = "";
+
     char caracter;
-    if (archivo_coordenadas){
+    if (archivo_coordenadas){ //  0/39.58/143.79_   1/39.51/3.50_
         while (archivo_coordenadas.available()){
             caracter = archivo_coordenadas.read();
-
-            String dato = file.readStringUntil('_');
+            if (caracter == "_"){
+                arrayDeValores[contador_de_guiones][GXY] = dato;
+                dato = "";
+                GYX = 0;
+                contador_de_guiones++;
+            }
+            else{
+                if(caracter == "/"){
+                    arrayDeValores[contador_de_guiones][GXY] = dato;
+                    dato = "";
+                    GXY++;
+                }
+                else{dato.concat(caracter)}
+            }
             arrayDeValores[contador_de_guiones] = dato;
             contador_de_guiones++;
         }
