@@ -40,7 +40,7 @@ void iniciarTarjeta(){
 }
 
 
-int dimensionarVectorDeDatos(){ // Devuelve la cantidad de valores que tiene coordenadas.txt
+int dimensionarListaDeDatos(){ // Devuelve la cantidad de valores que tiene coordenadas.txt
     int longitudDeDatos = 0;
     archivo_coordenadas = SD.open(coorFileName, FILE_READ);
     if (archivo_coordenadas){
@@ -55,10 +55,28 @@ int dimensionarVectorDeDatos(){ // Devuelve la cantidad de valores que tiene coo
 }
 
 
+void separarElementosEnLista(){
+    archivo_coordenadas = SD.open(coorFileName, FILE_READ);
+    int contador_de_guiones = 0;
+    int numero_de_dato = 0;
+    char caracter;
+    if (archivo_coordenadas){
+        while (archivo_coordenadas.available()){
+            caracter = archivo_coordenadas.read();
+
+            String dato = file.readStringUntil('_');
+            arrayDeValores[contador_de_guiones] = dato;
+            contador_de_guiones++;
+        }
+    }
+    archivo_coordenadas.close();
+}
+
+
 void setup(){
     Serial.begin(9600);
     iniciarTarjeta();
-    int arrayDeValores[dimensionarVectorDeDatos()];
+    int arrayDeValores[dimensionarListaDeDatos()][3];
 }
 
 
