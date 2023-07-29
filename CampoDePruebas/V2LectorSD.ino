@@ -5,11 +5,7 @@
 #define SDpin 10
 
 const char* coorFileName = "coordenadas.txt";
-float arrayDeValores[dimensionarListaDeDatos()][3];
-
-
-File archivo_progreso;
-File archivo_coordenadas;
+float** arrayDeValores;
 
 
 int leerProgreso(){
@@ -41,8 +37,8 @@ void iniciarTarjeta(){
     Serial.println("Inicializacion exitosa");
 }
 
-
-int dimensionarListaDeDatos(){ // Devuelve la cantidad de valores que tiene coordenadas.txt
+//NO USADA
+int dimensionarListaDeDatos(){ //NO USADA Devuelve la cantidad de valores que tiene coordenadas.txt
     int longitudDeDatos = 0;
     archivo_coordenadas = SD.open(coorFileName, FILE_READ);
     if (archivo_coordenadas){
@@ -61,10 +57,8 @@ void separarElementosEnLista(){
     archivo_coordenadas = SD.open(coorFileName, FILE_READ);
     int contador_de_guiones = 0;
     int numero_de_dato = 0;
-
     int GXY = 0; //Simboliza la posicion del dato 1er 2do o 3er posicion: G = tipo de orden, X = Coordenada x e Y= coordenada y
     String dato = "";
-
     char caracter;
     if (archivo_coordenadas){ //  0/39.58/143.79_   1/39.51/3.50_
         while (archivo_coordenadas.available()){
@@ -72,11 +66,12 @@ void separarElementosEnLista(){
             if (caracter == "_"){
                 arrayDeValores[contador_de_guiones][GXY] = dato.toFloat();
                 dato = "";
-                GYX = 0;
+                GXY = 0;
                 contador_de_guiones++;
             }
             else{
                 if(caracter == "/"){
+                    arrayDeValores = new[]
                     arrayDeValores[contador_de_guiones][GXY] = dato.toFloat();
                     dato = "";
                     GXY++;
@@ -91,6 +86,7 @@ void separarElementosEnLista(){
 void setup(){
     Serial.begin(9600);
     iniciarTarjeta();
+
 }
 
 
