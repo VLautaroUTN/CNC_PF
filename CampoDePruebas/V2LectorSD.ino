@@ -6,6 +6,8 @@
 
 const char* coorFileName = "coordenadas.txt";
 
+int arrayDeValores[dimensionarListaDeDatos()][3];
+
 File archivo_progreso;
 File archivo_coordenadas;
 
@@ -90,7 +92,6 @@ void separarElementosEnLista(){
 void setup(){
     Serial.begin(9600);
     iniciarTarjeta();
-    int arrayDeValores[dimensionarListaDeDatos()][3];
 }
 
 
