@@ -1,5 +1,4 @@
 //inicio
-pruebas
 #include <SPI.h>
 #include <SD.h>
 
