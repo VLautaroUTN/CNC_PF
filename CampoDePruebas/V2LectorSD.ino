@@ -8,7 +8,6 @@ const char* coorFileName = "coordenadas.txt";
 const char* progresoFileName = "progreso.txt";
 int porgreso;
 float* arrayDeValores;
-char caracter;
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
 
 int leerProgreso(){
@@ -22,6 +21,13 @@ int leerProgreso(){
 
 
 void guardarProgreso(int progreso){
+    /*  
+Función para guardar el progreso en un archivo de texto llamado "progreso.txt" en la tarjeta SD. 
+Recibe como parámetro el valor del progreso a guardar. 
+Si se puede abrir el archivo de progreso, se posiciona al principio y se escribe el valor del progreso. 
+Si no se puede abrir el archivo, se muestra un mensaje de error. 
+Finalmente, se cierra el archivo. 
+*/
     archivo_progreso = SD.open("progreso.txt", FILE_WRITE);
     if (archivo_progreso){
         archivo_progreso.seek(0);
@@ -32,6 +38,11 @@ void guardarProgreso(int progreso){
 
 
 void iniciarTarjeta(){
+    /*
+    El código muestra una función llamada "iniciarTarjeta" que inicializa una tarjeta SD
+    y verifica si la inicialización fue exitosa o no. Si la inicialización falla, se imprimirá
+    un mensaje de error. Si tiene éxito, se imprimirá un mensaje de confirmación.
+    */
     Serial.println("inicializando la tarjeta...");
     if (!SD.begin(SDpin)){
         Serial.println("Fallo en la inicializacion!");
@@ -41,7 +52,7 @@ void iniciarTarjeta(){
 }
 
 //NO USADA
-//int dimensionarListaDeDatos(){ //NO USADA Devuelve la cantidad de valores que tiene coordenadas.txt
+int dimensionarListaDeDatos(){ //NO USADA Devuelve la cantidad de valores que tiene coordenadas.txt
     int longitudDeDatos = 0;
     archivo_coordenadas = SD.open(coorFileName, FILE_READ);
     if (archivo_coordenadas){
@@ -89,10 +100,26 @@ void separarElementosEnLista(){
 }
 
 
-void leerDatos(archivo){
-    while (archivo_coordenadas.available(){
+void leerDatos(File archivo) { 
+    while (archivo.available()) { 
+        if (archivo) { 
+            String texto = ""; 
+            while (archivo.available()) { 
+                char caracter = archivo.read(); 
+                if (caracter == '_') { 
+                    break; // Se encontró la barra baja, se sale del bucle 
+                } 
+                texto += caracter; // Se agrega el carácter al string 
+            } 
+            archivo.close(); 
 
-    }
+            // Realizar alguna acción con el string leído 
+            // Por ejemplo, imprimirlo en el monitor serial 
+            Serial.println(texto); 
+        } else { 
+            Serial.println("Error al abrir el archivo"); 
+        } 
+    } 
 }
 
 void setup(){
