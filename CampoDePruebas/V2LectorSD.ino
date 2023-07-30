@@ -5,8 +5,11 @@
 #define SDpin 10
 
 const char* coorFileName = "coordenadas.txt";
-float** arrayDeValores;
-
+const char* progresoFileName = "progreso.txt";
+int porgreso;
+float* arrayDeValores;
+char caracter;
+File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
 
 int leerProgreso(){
     File archivo_progreso = SD.open(coorFileName, FILE_READ);
@@ -38,7 +41,7 @@ void iniciarTarjeta(){
 }
 
 //NO USADA
-int dimensionarListaDeDatos(){ //NO USADA Devuelve la cantidad de valores que tiene coordenadas.txt
+//int dimensionarListaDeDatos(){ //NO USADA Devuelve la cantidad de valores que tiene coordenadas.txt
     int longitudDeDatos = 0;
     archivo_coordenadas = SD.open(coorFileName, FILE_READ);
     if (archivo_coordenadas){
@@ -53,7 +56,7 @@ int dimensionarListaDeDatos(){ //NO USADA Devuelve la cantidad de valores que ti
 }
 
 
-void separarElementosEnLista(){
+//void separarElementosEnLista(){
     archivo_coordenadas = SD.open(coorFileName, FILE_READ);
     int contador_de_guiones = 0;
     int numero_de_dato = 0;
@@ -85,10 +88,16 @@ void separarElementosEnLista(){
     archivo_coordenadas.close();
 }
 
+
+void leerDatos(archivo){
+    while (archivo_coordenadas.available(){
+
+    }
+}
+
 void setup(){
     Serial.begin(9600);
     iniciarTarjeta();
-
 }
 
 
