@@ -56,7 +56,7 @@ void iniciarTarjeta(){
 }
 
 
-//void separarElementosEnLista(){
+void separarElementosEnLista(){
     archivo_coordenadas = SD.open(coorFileName, FILE_READ);
     int contador_de_guiones = 0;
     int numero_de_dato = 0;
