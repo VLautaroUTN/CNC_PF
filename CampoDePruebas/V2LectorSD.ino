@@ -7,7 +7,7 @@
 const char coorFileName[] = "coordenadas.txt";
 const char progresoFileName[] = "progreso.txt";
 int progreso;
-int arrayDeValores[3];
+float arrayDeValores[3];
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
 int tamañoArchivo = archivo_coordenadas.size();
 
@@ -62,14 +62,14 @@ void leerDatos(File archivo, int progreso) {
             char caracter = archivo.read(); 
             if (cantidadGuiones == progreso){
                 if (caracter == '_') {
-                    arrayDeValores[valorDeDato] = texto.toInt();
+                    arrayDeValores[valorDeDato] = texto.toFloat();
                     texto = "";
                     cantidadGuiones += 1;
                     guardarProgreso(cantidadGuiones);
                     break
                 }
                 if (caracter == '/') {
-                    arrayDeValores[valorDeDato] = texto.toInt();
+                    arrayDeValores[valorDeDato] = texto.toFloat();
                     valorDeDato += 1;
                     texto = "";
                 }
