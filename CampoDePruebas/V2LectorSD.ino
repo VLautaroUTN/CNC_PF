@@ -1,12 +1,11 @@
-//inicio
 #include <SPI.h>
 #include <SD.h>
 
 #define SDpin 10
 
-const char* coorFileName = "coordenadas.txt";
-const char* progresoFileName = "progreso.txt";
-int porgreso;
+const char coorFileName[] = "coordenadas.txt";
+const char progresoFileName[] = "progreso.txt";
+int progreso;
 float arrayDeValores[3];
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
 
@@ -94,6 +93,6 @@ void setup(){
 
 
 void loop(){
-
+    leerDatos(archivo_coordenadas, progreso);
 
 }
