@@ -91,6 +91,12 @@ void leerDatos(File archivo, int progreso) {
 } 
 
 
+void convertirMmAPasos(float longitud){
+    int pasosPorMilimetro = 100;
+    
+}
+
+
 void setup(){
     Serial.begin(9600);
     iniciarTarjeta();
