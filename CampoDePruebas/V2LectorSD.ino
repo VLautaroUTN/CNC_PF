@@ -1,13 +1,15 @@
 #include <SPI.h>
 #include <SD.h>
+#include <Stepper.h>
 
 #define SDpin 10
 
 const char coorFileName[] = "coordenadas.txt";
 const char progresoFileName[] = "progreso.txt";
 int progreso;
-float arrayDeValores[3];
+int arrayDeValores[3];
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
+int tamañoArchivo = archivo_coordenadas.size();
 
 int leerProgreso(){
     File archivo_progreso = SD.open(coorFileName, FILE_READ);
