@@ -15,7 +15,7 @@ int leerProgreso(){
     if (archivo_progreso){
         archivo_progreso.seek(0);
         int progreso = archivo_progreso.read();
-        return progreso;
+        return progreso.toInt();
     }else {Serial.println("Error al leer el progreso");}
 }
 
@@ -53,46 +53,43 @@ void iniciarTarjeta(){
 
 
 void leerDatos(File archivo, int progreso) { 
-    while (archivo.available()) { 
-        if (archivo) { 
-            String texto = "";
-            int valorDeDato = 0;
-            int cantidadGuiones = 0;
-            while (archivo.available()) { 
-                char caracter = archivo.read(); 
-                if (cantidadGuiones == progreso){
-                    if (caracter == '_') {
-                        arrayDeValores[valorDeDato] = texto.toFloat();
-                        texto = "";
-                        cantidadGuiones += 1;
-                        break
-                    }
-                    if (caracter == '/') {
-                        arrayDeValores[valorDeDato] = texto.toFloat();
-                        valorDeDato += 1;
-                        texto = "";
-                    }
-                    texto += caracter; // Se agrega el carácter al string 
-                } else {
-                    if(caracter == "_"){
-                        cantidadGuiones += 1;
-                    }
+    char texto = "";
+    int valorDeDato = 0;
+    int cantidadGuiones = 0;
+    if (archivo) {
+        while (archivo.available()) { 
+            char caracter = archivo.read(); 
+            if (cantidadGuiones == progreso){
+                if (caracter == '_') {
+                    arrayDeValores[valorDeDato] = texto.toFloat();
+                    texto = "";
+                    cantidadGuiones += 1;
+                    guardarProgreso(cantidadGuiones);
+                    break
                 }
-            } 
-            archivo.close(); 
-
-            // Realizar alguna acción con el string leído 
-            // Por ejemplo, imprimirlo en el monitor serial 
-            Serial.println(texto); 
-        } else { 
-            Serial.println("Error al abrir el archivo"); 
-        } 
+                if (caracter == '/') {
+                    arrayDeValores[valorDeDato] = texto.toFloat();
+                    valorDeDato += 1;
+                    texto = "";
+                }
+                texto += caracter; // Se agrega el carácter al string 
+            } else {
+                if(caracter == "_"){
+                    cantidadGuiones += 1;
+                }
+            }
+        }
+        archivo.close();
+    } else { 
+        Serial.println("Error al abrir el archivo"); 
     } 
-}
+} 
+
 
 void setup(){
     Serial.begin(9600);
     iniciarTarjeta();
+    progreso = leerProgreso()
 }
 
 
