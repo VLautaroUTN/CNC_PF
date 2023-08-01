@@ -62,14 +62,14 @@ void leerDatos(File archivo, int progreso) {
             char caracter = archivo.read(); 
             if (cantidadGuiones == progreso){
                 if (caracter == '_') {
-                    arrayDeValores[valorDeDato] = texto.toFloat();
+                    arrayDeValores[valorDeDato] = texto.toInt();
                     texto = "";
                     cantidadGuiones += 1;
                     guardarProgreso(cantidadGuiones);
                     break
                 }
                 if (caracter == '/') {
-                    arrayDeValores[valorDeDato] = texto.toFloat();
+                    arrayDeValores[valorDeDato] = texto.toInt();
                     valorDeDato += 1;
                     texto = "";
                 }
