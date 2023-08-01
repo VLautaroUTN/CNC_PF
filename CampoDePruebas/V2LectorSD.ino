@@ -54,6 +54,10 @@ void iniciarTarjeta(){
 
 
 void leerDatos(File archivo, int progreso) { 
+    /*
+    Esta funcion guarda los valores de las coordenadas en Array de valores
+    los valores guardados corresponden a milimetros (mm) y NO a pasos de motor
+    */
     char texto = "";
     int valorDeDato = 0;
     int cantidadGuiones = 0;
