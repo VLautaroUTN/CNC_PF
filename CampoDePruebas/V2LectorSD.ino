@@ -9,10 +9,10 @@ const char progresoFileName[] = "progreso.txt";
 int progreso;
 float arrayDeValores[3];
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
+File archivo_progreso = SD.open(progresoFileName, FILE_WRITE);
 int tamañoArchivo = archivo_coordenadas.size();
 
 int leerProgreso(){
-    File archivo_progreso = SD.open(coorFileName, FILE_READ);
     if (archivo_progreso){
         archivo_progreso.seek(0);
         int progreso = archivo_progreso.read();
@@ -29,7 +29,6 @@ Si se puede abrir el archivo de progreso, se posiciona al principio y se escribe
 Si no se puede abrir el archivo, se muestra un mensaje de error. 
 Finalmente, se cierra el archivo. 
 */
-    archivo_progreso = SD.open("progreso.txt", FILE_WRITE);
     if (archivo_progreso){
         archivo_progreso.seek(0);
         archivo_progreso.write(progreso);
@@ -70,7 +69,7 @@ void leerDatos(File archivo, int progreso) {
                     texto = "";
                     cantidadGuiones += 1;
                     guardarProgreso(cantidadGuiones);
-                    break
+                    break;
                 }
                 if (caracter == '/') {
                     arrayDeValores[valorDeDato] = texto.toFloat();
@@ -91,9 +90,11 @@ void leerDatos(File archivo, int progreso) {
 } 
 
 
-void convertirMmAPasos(float longitud){
+int convertirMmAPasos(float longitud){
+    int pasos;
     int pasosPorMilimetro = 100;
-    
+    pasos = round(longitud / pasosPorMilimetro);
+    return pasos;
 }
 
 
@@ -106,5 +107,7 @@ void setup(){
 
 void loop(){
     leerDatos(archivo_coordenadas, progreso);
-
+    for (int x =0; x < 3; x++){
+        arrayDeValores[x] = convertirMmAPasos(arrayDeValores[x]);
+    }
 }

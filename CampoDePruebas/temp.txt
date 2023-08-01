@@ -1,0 +1,30 @@
+Tu código tiene varios errores que deben corregirse. A continuación, te muestro los cambios necesarios:
+1. En la función  `leerProgreso()` , estás utilizando la variable  `archivo_progreso`  sin declararla previamente. Debes declararla como una variable local dentro de la función:
+int leerProgreso() {
+    File archivo_progreso = SD.open(progresoFileName, FILE_READ);
+    if (archivo_progreso) {
+        archivo_progreso.seek(0);
+        int progreso = archivo_progreso.read();
+        return progreso;
+    } else {
+        Serial.println("Error al leer el progreso");
+    }
+}
+2. En la función  `guardarProgreso()` , estás utilizando la variable  `archivo_progreso`  sin declararla previamente. Debes declararla como una variable local dentro de la función:
+void guardarProgreso(int progreso) {
+    File archivo_progreso = SD.open(progresoFileName, FILE_WRITE);
+    if (archivo_progreso) {
+        archivo_progreso.seek(0);
+        archivo_progreso.write(progreso);
+    } else {
+        Serial.println("Error al guardar el progreso");
+    }
+    archivo_progreso.close();
+}
+3. En la función  `leerDatos()` , falta un punto y coma al final de la línea donde llamas a la función  `break` . Debes agregarlo:
+break;
+4. En el bucle  `for`  del  `loop()` , hay un error de sintaxis en la declaración del bucle. La sintaxis correcta es utilizar punto y coma en lugar de coma para separar las tres partes del bucle. Además, el límite del bucle debe ser menor que 3 en lugar de menor o igual a 3:
+for (int x = 0; x < 3; x++) {
+5. En la función  `convertirMmAPasos()` , falta un punto y coma al final de la línea donde asignas el valor a la variable  `pasos` . Debes agregarlo:
+pasos = round(longitud / pasosPorMilimetro);
+Con estos cambios, tu código debería funcionar correctamente. Recuerda verificar si hay otros errores o mejoras que puedas realizar.
