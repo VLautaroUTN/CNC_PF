@@ -15,8 +15,8 @@ int tamanoArchivo = archivo_coordenadas.size();
 int leerProgreso(){
     if (archivo_progreso){
         archivo_progreso.seek(0);
-        int progreso = archivo_progreso.read();
-        return progreso.toInt();
+        int progreso = archivo_progreso.read().toInt();
+        return progreso;
     }else {Serial.println("Error al leer el progreso");}
 }
 
