@@ -10,7 +10,7 @@ int progreso;
 float arrayDeValores[3];
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
 File archivo_progreso = SD.open(progresoFileName, FILE_WRITE);
-int tamañoArchivo = archivo_coordenadas.size();
+int tamanoArchivo = archivo_coordenadas.size();
 
 int leerProgreso(){
     if (archivo_progreso){
