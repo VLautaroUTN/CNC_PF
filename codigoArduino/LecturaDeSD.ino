@@ -15,7 +15,7 @@ int tamanoArchivo = archivo_coordenadas.size();
 int leerProgreso(){
     if (archivo_progreso){
         archivo_progreso.seek(0);
-        int progreso = archivo_progreso.read().toInt();
+        int progreso = archivo_progreso.read();
         return progreso;
     }else {Serial.println("Error al leer el progreso");}
 }
@@ -57,7 +57,7 @@ void leerDatos(int progreso) {
     Esta funcion guarda los valores de las coordenadas en Array de valores
     los valores guardados corresponden a milimetros (mm) y NO a pasos de motor
     */
-    char texto = "";
+    String texto = "";
     int valorDeDato = 0;
     int cantidadGuiones = 0;
     if (archivo_coordenadas) {
@@ -76,14 +76,13 @@ void leerDatos(int progreso) {
                     valorDeDato += 1;
                     texto = "";
                 }
-                texto += caracter; // Se agrega el carácter al string 
+                texto.concat(caracter); // Se agrega el carácter al string 
             } else {
                 if(caracter == "_"){
                     cantidadGuiones += 1;
                 }
             }
         }
-        archivo.close();
     } else { 
         Serial.println("Error al abrir el archivo"); 
     } 
