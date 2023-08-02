@@ -52,7 +52,7 @@ void iniciarTarjeta(){
 }
 
 
-void leerDatos(File archivo, int progreso) { 
+void leerDatos(int progreso) { 
     /*
     Esta funcion guarda los valores de las coordenadas en Array de valores
     los valores guardados corresponden a milimetros (mm) y NO a pasos de motor
@@ -60,9 +60,9 @@ void leerDatos(File archivo, int progreso) {
     char texto = "";
     int valorDeDato = 0;
     int cantidadGuiones = 0;
-    if (archivo) {
-        while (archivo.available()) { 
-            char caracter = archivo.read(); 
+    if (archivo_coordenadas) {
+        while (archivo_coordenadas.available()) { 
+            char caracter = archivo_coordenadas.read(); 
             if (cantidadGuiones == progreso){
                 if (caracter == '_') {
                     arrayDeValores[valorDeDato] = texto.toFloat();
@@ -101,12 +101,12 @@ int convertirMmAPasos(float longitud){
 void setup(){
     Serial.begin(9600);
     iniciarTarjeta();
-    progreso = leerProgreso()
+    progreso = leerProgreso();
 }
 
 
 void loop(){
-    leerDatos(archivo_coordenadas, progreso);
+    leerDatos(progreso);
     for (int x =0; x < 3; x++){
         arrayDeValores[x] = convertirMmAPasos(arrayDeValores[x]);
     }

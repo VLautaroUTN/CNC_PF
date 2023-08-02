@@ -1,5 +1,5 @@
 entrada = open('output_2_0001.ngc', 'r')
-salida = open('coordenadas.ngc', 'w')
+salida = open('coordenadas.txt', 'w')
 
 
 def filtrar(lista):
