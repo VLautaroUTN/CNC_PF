@@ -2,7 +2,27 @@
 #include <SD.h>
 #include <Stepper.h>
 
+//Pines:
+//Motor eje X:
+const int MX1 = 0;
+const int MX2 = 1;
+const int MX3 = 2;
+const int MX4 = 3;
+//Motor eje Y:
+const int MY1 = 4;
+const int MY2 = 5;
+const int MY3 = 6;
+const int MY4 = 7;
+//Final de Carrera X:
+const int finCarreraX = 11;
+//Final de Carrera Y:
+const int finCarreraY = 12;
+//Servo:
+const int pinServo = 8;
+//Tarjeta SD:
 #define SDpin 10
+//indicador de progreso:
+const int pinProgreso = 9;
 
 const char coorFileName[] = "coordenadas.txt";
 const char progresoFileName[] = "progreso.txt";
@@ -109,4 +129,5 @@ void loop(){
     for (int x =0; x < 3; x++){
         arrayDeValores[x] = convertirMmAPasos(arrayDeValores[x]);
     }
+
 }
