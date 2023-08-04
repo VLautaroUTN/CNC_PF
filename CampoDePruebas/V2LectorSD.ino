@@ -23,7 +23,10 @@ const int pinServo = 8;
 #define SDpin 10
 //indicador de progreso:
 const int pinProgreso = 9;
+// Botones de inicio/parada
+const int pulsadorInicioPausa = 13;
 
+//Variables Globales
 const char coorFileName[] = "coordenadas.txt";
 const char progresoFileName[] = "progreso.txt";
 int progreso;
