@@ -12,6 +12,9 @@ File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
 File archivo_progreso = SD.open(progresoFileName, FILE_WRITE);
 int tamanoArchivo = archivo_coordenadas.size();
 
+const int pasosPorVuelta = 2048;
+Stepper MotorX(pasosPorVuelta, 1,2,3,4);
+
 int leerProgreso(){ //Lee el archivo de progreso y devuelve el valor almacenado
     if (archivo_progreso){
         archivo_progreso.seek(0);
@@ -96,6 +99,9 @@ int convertirMmAPasos(float longitud){
     return pasos;
 }
 
+void moverMotores(orden, X, Y){
+    
+}
 
 void setup(){
     Serial.begin(9600);
