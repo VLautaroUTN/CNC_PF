@@ -22,6 +22,7 @@ int pinServo = 20;
 int servoUp = 120;
 int servoDown = 0;
 
+
 int leerProgreso(){ //Lee el archivo de progreso y devuelve el valor almacenado
     if (archivo_progreso){
         archivo_progreso.seek(0);
@@ -106,6 +107,7 @@ int convertirMmAPasos(float longitud){
     return pasos;
 }
 
+
 void moverMotores(){
     if (arrayDePasos[0] == 1){
         servoFib.write(servoDown);
@@ -116,6 +118,10 @@ void moverMotores(){
     motorX.step(arrayDePasos[1]);
     motorY.step(arrayDePasos[2]);
 }
+
+
+void 
+
 
 void setup(){
     Serial.begin(9600);
