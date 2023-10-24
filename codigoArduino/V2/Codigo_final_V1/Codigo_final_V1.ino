@@ -1,6 +1,7 @@
 #include <SPI.h>
 #include <SD.h>
 #include <Stepper.h>
+#include <Servo.h> 
 
 #define SDpin 10
 
@@ -8,12 +9,18 @@ const char coorFileName[] = "coordenadas.txt";
 const char progresoFileName[] = "progreso.txt";
 int progreso;
 float arrayDeValores[3];
+int arrayDePasos[3];
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
 File archivo_progreso = SD.open(progresoFileName, FILE_WRITE);
 int tamanoArchivo = archivo_coordenadas.size();
 
 const int pasosPorVuelta = 2048;
-Stepper MotorX(pasosPorVuelta, 1,2,3,4);
+Stepper motorX(pasosPorVuelta, 1, 2, 3, 4);
+Stepper motorY(pasosPorVuelta, 5, 6, 7, 8);
+Servo servoFib;
+int pinServo = 20;
+int servoUp = 120;
+int servoDown = 0;
 
 int leerProgreso(){ //Lee el archivo de progreso y devuelve el valor almacenado
     if (archivo_progreso){
@@ -99,20 +106,31 @@ int convertirMmAPasos(float longitud){
     return pasos;
 }
 
-void moverMotores(orden, X, Y){
-    
+void moverMotores(){
+    if (arrayDePasos[0] == 1){
+        servoFib.write(servoDown);
+    }
+    if (arrayDePasos[0] == 1){
+        servoFib.write(servoUp);
+    }
+    motorX.step(arrayDePasos[1]);
+    motorY.step(arrayDePasos[2]);
 }
 
 void setup(){
     Serial.begin(9600);
     iniciarTarjeta();
+    servoFib.attach(pinServo);
     progreso = leerProgreso();
+    motorX.setSpeed(3);
+    motorY.setSpeed(3);
 }
 
 
 void loop(){
     leerDatos(progreso);
     for (int x =0; x < 3; x++){
-        arrayDeValores[x] = convertirMmAPasos(arrayDeValores[x]);
+        arrayDePasos[x] = convertirMmAPasos(arrayDeValores[x]);
     }
+    moverMotores();
 }
