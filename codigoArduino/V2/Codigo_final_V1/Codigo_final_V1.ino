@@ -8,6 +8,7 @@
 const char coorFileName[] = "coordenadas.txt";
 const char progresoFileName[] = "progreso.txt";
 int progreso;
+int longitudDeCoordenadas;
 float arrayDeValores[3];
 int arrayDePasos[3];
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
@@ -138,6 +139,14 @@ int medirLongitudDeOrdenes(){
     }
 }
 
+
+void actualizarPanelLed(int longitud, int progreso){
+    int porcentajeDeProgreso = round(progreso / longitud);
+
+    switchCasee:
+}
+
+
 void setup(){
     Serial.begin(9600);
     iniciarTarjeta();
@@ -145,6 +154,7 @@ void setup(){
     progreso = leerProgreso();
     motorX.setSpeed(3);
     motorY.setSpeed(3);
+    longitudDeCoordenadas = medirLongitudDeOrdenes();
 }
 
 
