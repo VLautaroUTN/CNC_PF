@@ -12,7 +12,6 @@ float arrayDeValores[3];
 int arrayDePasos[3];
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
 File archivo_progreso = SD.open(progresoFileName, FILE_WRITE);
-int tamanoArchivo = archivo_coordenadas.size();
 
 const int pasosPorVuelta = 2048;
 Stepper motorX(pasosPorVuelta, 1, 2, 3, 4);
@@ -120,8 +119,24 @@ void moverMotores(){
 }
 
 
-void 
-
+int medirLongitudDeOrdenes(){
+    /*
+    Esta funcion lee el archivo "coordenadas.txt" y busca todos los guiones
+    Para devolver la cantidad de instrucciones que posee y asi poder
+    calcular el progreso para los LEDs indicadores
+    */
+    int longitud = 0;
+    if (archivo_coordenadas) {
+            while (archivo_coordenadas.available()) { 
+                char caracter = archivo_coordenadas.read();
+                if (caracter == "_"){
+                    longitud += 1;
+                }
+            }
+            archivo_coordenadas.seek(0);
+            return longitud;
+    }
+}
 
 void setup(){
     Serial.begin(9600);
