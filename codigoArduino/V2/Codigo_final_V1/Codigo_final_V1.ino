@@ -13,6 +13,7 @@ float arrayDeValores[3];
 int arrayDePasos[3];
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
 File archivo_progreso = SD.open(progresoFileName, FILE_WRITE);
+int longitudDeCoordenadas;
 
 const int pasosPorVuelta = 2048;
 Stepper motorX(pasosPorVuelta, 1, 2, 3, 4);
@@ -140,10 +141,24 @@ int medirLongitudDeOrdenes(){
 }
 
 
-void actualizarPanelLed(int longitud, int progreso){
-    int porcentajeDeProgreso = round(progreso / longitud);
+void actualizarPanelLed(){
+    int porcentajeDeProgreso = round(progreso / longitudDeCoordenadas) * 100;
 
-    switchCasee:
+    if(porcentajeDeProgreso > 0){
+        // Enciende combinacion de puesta en fiuncionamiento
+    }
+    if(porcentajeDeProgreso > 25){
+        // Enciende combinacion 25%
+    }
+    if(porcentajeDeProgreso > 50){
+        // Enciende combinacion 50%
+    }
+    if(porcentajeDeProgreso > 75){
+        // Enciende combinacion 75%
+    }
+    if(porcentajeDeProgreso == 100){
+        // Enciende combinacion FIN
+    }
 }
 
 
@@ -164,4 +179,5 @@ void loop(){
         arrayDePasos[x] = convertirMmAPasos(arrayDeValores[x]);
     }
     moverMotores();
+    actualizarPanelLed():
 }
