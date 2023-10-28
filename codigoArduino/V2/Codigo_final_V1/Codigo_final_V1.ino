@@ -16,6 +16,7 @@ File archivo_progreso = SD.open(progresoFileName, FILE_WRITE);
 int longitudDeCoordenadas;
 Servo servoFib;
 
+
 const int pasosPorVuelta = 2048;
 
 
@@ -35,7 +36,6 @@ mosi = 11
 
 int servoUp = 120;
 int servoDown = 0;
-
 
 
 int leerProgreso(){ //Lee el archivo de progreso y devuelve el valor almacenado
