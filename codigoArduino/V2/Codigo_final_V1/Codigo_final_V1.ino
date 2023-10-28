@@ -142,27 +142,53 @@ int medirLongitudDeOrdenes(){
 
 
 void actualizarPanelLed(){
+    int pinLeds = 20
     int porcentajeDeProgreso = round(progreso / longitudDeCoordenadas) * 100;
 
-    if(porcentajeDeProgreso > 0){
-        // Enciende combinacion de puesta en fiuncionamiento
+    switch (porcentajeDeProgreso){
+    case 25:
+        digitalWrite(pinLeds, HIGH);
+        delay(200);
+        digitalWrite(pinLeds, LOW);
+        break;
+
+    case 50:
+        digitalWrite(pinLeds, HIGH);
+        delay(200);
+        digitalWrite(pinLeds, LOW);
+        break;
+
+    case 75:
+        digitalWrite(pinLeds, HIGH);
+        delay(200);
+        digitalWrite(pinLeds, LOW);
+        delay(200);
+        digitalWrite(pinLeds, HIGH);
+        delay(200);
+        digitalWrite(pinLeds, LOW);
+        break;
+
+    case 100:
+        digitalWrite(pinLeds, HIGH);
+        delay(1000);
+        digitalWrite(pinLeds, LOW);
+        break;
     }
-    if(porcentajeDeProgreso > 25){
-        // Enciende combinacion 25%
-    }
-    if(porcentajeDeProgreso > 50){
-        // Enciende combinacion 50%
-    }
-    if(porcentajeDeProgreso > 75){
-        // Enciende combinacion 75%
-    }
-    if(porcentajeDeProgreso == 100){
-        // Enciende combinacion FIN
-    }
+    
 }
 
 
-void puestaACero(){}
+void puestaACero(){
+    int pinSensorX = 15;
+    int pinSensorY = 16;
+
+        while (pinSensorX == 0){
+            motorX.step(-10);
+        }
+        while (pinSensorY == 0){
+            motorY.step(-10);
+        }
+}
 
 
 void setup(){
