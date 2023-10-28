@@ -3,7 +3,7 @@
 #include <Stepper.h>
 #include <Servo.h> 
 
-#define SDpin 10
+#define SDpin 10 
 
 const char coorFileName[] = "coordenadas.txt";
 const char progresoFileName[] = "progreso.txt";
@@ -14,14 +14,28 @@ int arrayDePasos[3];
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
 File archivo_progreso = SD.open(progresoFileName, FILE_WRITE);
 int longitudDeCoordenadas;
+Servo servoFib;
 
 const int pasosPorVuelta = 2048;
+
+
 Stepper motorX(pasosPorVuelta, 1, 2, 3, 4);
 Stepper motorY(pasosPorVuelta, 5, 6, 7, 8);
-Servo servoFib;
-int pinServo = 20;
+int pinServo = 9;
+int pinLeds = 14;
+int pinSensorX = 15;
+int pinSensorY = 16;
+// pines que no se definen - Tarjeta SD
+/*  PARA ARDU UNO
+cs = 10
+sck = 13
+miso = 12
+mosi = 11
+*/
+
 int servoUp = 120;
 int servoDown = 0;
+
 
 
 int leerProgreso(){ //Lee el archivo de progreso y devuelve el valor almacenado
@@ -142,46 +156,41 @@ int medirLongitudDeOrdenes(){
 
 
 void actualizarPanelLed(){
-    int pinLeds = 20
     int porcentajeDeProgreso = round(progreso / longitudDeCoordenadas) * 100;
-
     switch (porcentajeDeProgreso){
-    case 25:
-        digitalWrite(pinLeds, HIGH);
-        delay(200);
-        digitalWrite(pinLeds, LOW);
-        break;
+        case 25:
+            digitalWrite(pinLeds, HIGH);
+            delay(200);
+            digitalWrite(pinLeds, LOW);
+            break;
 
-    case 50:
-        digitalWrite(pinLeds, HIGH);
-        delay(200);
-        digitalWrite(pinLeds, LOW);
-        break;
+        case 50:
+            digitalWrite(pinLeds, HIGH);
+            delay(200);
+            digitalWrite(pinLeds, LOW);
+            break;
 
-    case 75:
-        digitalWrite(pinLeds, HIGH);
-        delay(200);
-        digitalWrite(pinLeds, LOW);
-        delay(200);
-        digitalWrite(pinLeds, HIGH);
-        delay(200);
-        digitalWrite(pinLeds, LOW);
-        break;
+        case 75:
+            digitalWrite(pinLeds, HIGH);
+            delay(200);
+            digitalWrite(pinLeds, LOW);
+            delay(200);
+            digitalWrite(pinLeds, HIGH);
+            delay(200);
+            digitalWrite(pinLeds, LOW);
+            break;
 
-    case 100:
-        digitalWrite(pinLeds, HIGH);
-        delay(1000);
-        digitalWrite(pinLeds, LOW);
-        break;
+        case 100:
+            digitalWrite(pinLeds, HIGH);
+            delay(1000);
+            digitalWrite(pinLeds, LOW);
+            break;
     }
     
 }
 
 
 void puestaACero(){
-    int pinSensorX = 15;
-    int pinSensorY = 16;
-
         while (pinSensorX == 0){
             motorX.step(-10);
         }
@@ -192,6 +201,11 @@ void puestaACero(){
 
 
 void setup(){
+    // Definicion de pines
+    //motores pines
+    pinMode(pinServo, OUTPUT);
+
+    // Otras definiciones
     Serial.begin(9600);
     iniciarTarjeta();
     servoFib.attach(pinServo);
