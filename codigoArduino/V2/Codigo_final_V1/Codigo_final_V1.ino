@@ -2,7 +2,7 @@
 #include <SD.h>
 #include <Stepper.h>
 #include <Servo.h> 
-
+//comentario random para commitear - BORRAR ESTE COMENTARIO
 #define SDpin 10 
 
 const char coorFileName[] = "coordenadas.txt";
