@@ -34,9 +34,6 @@ miso = 12
 mosi = 11
 */
 
-int servoUp = 120;
-int servoDown = 0;
-
 
 int leerProgreso(){ //Lee el archivo de progreso y devuelve el valor almacenado
     if (archivo_progreso){
@@ -124,6 +121,8 @@ int convertirMmAPasos(float longitud){
 
 
 void moverMotores(){
+    int servoUp = 120;
+    int servoDown = 0;
     if (arrayDePasos[0] == 1){
         servoFib.write(servoDown);
     }
