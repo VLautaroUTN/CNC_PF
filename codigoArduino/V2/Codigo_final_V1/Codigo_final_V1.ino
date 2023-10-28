@@ -204,7 +204,9 @@ void setup(){
     // Definicion de pines
     //motores pines
     pinMode(pinServo, OUTPUT);
-
+    pinMode(pinLeds, OUTPUT);
+    pinMode(pinSensorX, INPUT);
+    pinMode(pinSensorY, INPUT);
     // Otras definiciones
     Serial.begin(9600);
     iniciarTarjeta();
