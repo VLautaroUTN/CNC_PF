@@ -3,7 +3,7 @@
 #include <Stepper.h>
 #include <Servo.h> 
 //comentario random para commitear - BORRAR ESTE COMENTARIO
-#define SDpin 10 
+#define SDpin 53 
 
 const char coorFileName[] = "coordenadas.txt";
 const char progresoFileName[] = "progreso.txt";
@@ -20,10 +20,10 @@ Servo servoFib;
 const int pasosPorVuelta = 2048;
 
 
-Stepper motorX(pasosPorVuelta, 1, 2, 3, 4);
-Stepper motorY(pasosPorVuelta, 5, 6, 7, 8);
-int pinServo = 9;
-int pinLeds = 14;
+Stepper motorX(pasosPorVuelta, 2, 3, 4, 5);
+Stepper motorY(pasosPorVuelta, 22, 23, 24, 25);
+int pinServo = 6;
+int pinLeds = 7;
 int pinSensorX = 15;
 int pinSensorY = 16;
 // pines que no se definen - Tarjeta SD
