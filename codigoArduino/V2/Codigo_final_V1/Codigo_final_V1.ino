@@ -13,19 +13,18 @@ float arrayDeValores[3];
 int arrayDePasos[3];
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
 File archivo_progreso = SD.open(progresoFileName, FILE_WRITE);
-int longitudDeCoordenadas;
 Servo servoFib;
 
 
 const int pasosPorVuelta = 2048;
 
 
-Stepper motorX(pasosPorVuelta, 2, 3, 4, 5);
-Stepper motorY(pasosPorVuelta, 22, 23, 24, 25);
+Stepper motorX(pasosPorVuelta, 2, 5, 4, 3);
+Stepper motorY(pasosPorVuelta, 22, 25, 24, 23);
 int pinServo = 6;
 int pinLeds = 7;
-int pinSensorX = 15;
-int pinSensorY = 16;
+int pinSensorX = 40;
+int pinSensorY = 41;
 // pines que no se definen - Tarjeta SD
 /*  PARA ARDU UNO
 cs = 10
@@ -36,6 +35,7 @@ mosi = 11
 
 
 int leerProgreso(){ //Lee el archivo de progreso y devuelve el valor almacenado
+    Serial.println("FUNCION leerProgreso()");
     if (archivo_progreso){
         archivo_progreso.seek(0);
         int progreso = archivo_progreso.read();
@@ -45,6 +45,7 @@ int leerProgreso(){ //Lee el archivo de progreso y devuelve el valor almacenado
 
 
 void guardarProgreso(int progreso){
+  Serial.println("FUNCION guardarProgreso()");
     /*  
 Función para guardar el progreso en un archivo de texto llamado "progreso.txt" en la tarjeta SD. 
 Recibe como parámetro el valor del progreso a guardar. 
@@ -61,6 +62,7 @@ Finalmente, se cierra el archivo.
 
 
 void iniciarTarjeta(){
+  Serial.println("FUNCION inicializarTarjeta()");
     /*
     El código muestra una función llamada "iniciarTarjeta" que inicializa una tarjeta SD
     y verifica si la inicialización fue exitosa o no. Si la inicialización falla, se imprimirá
@@ -76,6 +78,7 @@ void iniciarTarjeta(){
 
 
 void leerDatos(int progreso) { 
+    Serial.println("FUNCION leerDatos()");
     /*
     Esta funcion guarda los valores de las coordenadas en Array de valores
     los valores guardados corresponden a milimetros (mm) y NO a pasos de motor
@@ -107,12 +110,13 @@ void leerDatos(int progreso) {
             }
         }
     } else { 
-        Serial.println("Error al abrir el archivo"); 
+        Serial.println("Error al abrir el archivo_coordenadas"); 
     } 
 } 
 
 
 int convertirMmAPasos(float longitud){
+    Serial.println("FUNCION convertirMmAPasos()");
     int pasos;
     int pasosPorMilimetro = 100;
     pasos = round(longitud / pasosPorMilimetro);
@@ -121,6 +125,7 @@ int convertirMmAPasos(float longitud){
 
 
 void moverMotores(){
+    Serial.println("FUNCION moverMotores()");
     int servoUp = 120;
     int servoDown = 0;
     if (arrayDePasos[0] == 1){
@@ -135,6 +140,7 @@ void moverMotores(){
 
 
 int medirLongitudDeOrdenes(){
+  Serial.println("FUNCION medirLongitudDeOrdenes()");
     /*
     Esta funcion lee el archivo "coordenadas.txt" y busca todos los guiones
     Para devolver la cantidad de instrucciones que posee y asi poder
@@ -155,6 +161,7 @@ int medirLongitudDeOrdenes(){
 
 
 void actualizarPanelLed(){
+  Serial.println("FUNCION actualizarPanelLed()");
     int porcentajeDeProgreso = round(progreso / longitudDeCoordenadas) * 100;
     switch (porcentajeDeProgreso){
         case 25:
@@ -190,11 +197,25 @@ void actualizarPanelLed(){
 
 
 void puestaACero(){
-        while (pinSensorX == 0){
-            motorX.step(-10);
+  Serial.println("FUNCION puestaACero()");
+        int finX = digitalRead(pinSensorX);
+        int finY = digitalRead(pinSensorY);
+        Serial.println("Retornando...");
+        Serial.println("finX = ");
+        Serial.println(finX);
+        Serial.println("finY = ");
+        Serial.println(finY);
+        while (finX == 0){
+          Serial.println("Retornando X...");
+          motorX.step(10);
+          finX = digitalRead(pinSensorX);
+          if (finX == 1){Serial.println("Cero X alcanzado");}
         }
-        while (pinSensorY == 0){
-            motorY.step(-10);
+        while (finY == 0){
+          Serial.println("Retornando Y...");
+          motorY.step(10);
+          finY = digitalRead(pinSensorY);
+          if (finY == 1){Serial.println("Cero Y alcanzado");}
         }
 }
 
@@ -208,20 +229,25 @@ void setup(){
     pinMode(pinSensorY, INPUT);
     // Otras definiciones
     Serial.begin(9600);
+    Serial.println("inicializando");
     iniciarTarjeta();
     servoFib.attach(pinServo);
     progreso = leerProgreso();
     motorX.setSpeed(3);
     motorY.setSpeed(3);
     longitudDeCoordenadas = medirLongitudDeOrdenes();
+    Serial.println("Retornando al cero");
+    puestaACero();
+    Serial.println("Iniciaalizacion terminada");
 }
 
 
 void loop(){
+    Serial.println("FUNCION loop()");
     leerDatos(progreso);
     for (int x =0; x < 3; x++){
         arrayDePasos[x] = convertirMmAPasos(arrayDeValores[x]);
     }
     moverMotores();
-    actualizarPanelLed():
+    actualizarPanelLed();
 }
