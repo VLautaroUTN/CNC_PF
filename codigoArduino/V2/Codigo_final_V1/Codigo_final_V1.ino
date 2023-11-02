@@ -11,6 +11,9 @@ int progreso;
 int longitudDeCoordenadas;
 float arrayDeValores[3];
 int arrayDePasos[3];
+int inicioTarjetaExitoso = 0;
+int inicioLecturaProgreso = 0;
+int puestaACeroExitosa = 0;
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
 File archivo_progreso = SD.open(progresoFileName, FILE_WRITE);
 Servo servoFib;
@@ -45,7 +48,7 @@ int leerProgreso(){ //Lee el archivo de progreso y devuelve el valor almacenado
 
 
 void guardarProgreso(int progreso){
-  Serial.println("FUNCION guardarProgreso()");
+    Serial.println("FUNCION guardarProgreso()");
     /*  
 Función para guardar el progreso en un archivo de texto llamado "progreso.txt" en la tarjeta SD. 
 Recibe como parámetro el valor del progreso a guardar. 
@@ -62,7 +65,7 @@ Finalmente, se cierra el archivo.
 
 
 void iniciarTarjeta(){
-  Serial.println("FUNCION inicializarTarjeta()");
+    Serial.println("FUNCION inicializarTarjeta()");
     /*
     El código muestra una función llamada "iniciarTarjeta" que inicializa una tarjeta SD
     y verifica si la inicialización fue exitosa o no. Si la inicialización falla, se imprimirá
@@ -74,6 +77,7 @@ void iniciarTarjeta(){
         return;
     }
     Serial.println("Inicializacion exitosa");
+    inicioConExito = 1;
 }
 
 
@@ -140,7 +144,7 @@ void moverMotores(){
 
 
 int medirLongitudDeOrdenes(){
-  Serial.println("FUNCION medirLongitudDeOrdenes()");
+    Serial.println("FUNCION medirLongitudDeOrdenes()");
     /*
     Esta funcion lee el archivo "coordenadas.txt" y busca todos los guiones
     Para devolver la cantidad de instrucciones que posee y asi poder
@@ -161,7 +165,7 @@ int medirLongitudDeOrdenes(){
 
 
 void actualizarPanelLed(){
-  Serial.println("FUNCION actualizarPanelLed()");
+    Serial.println("FUNCION actualizarPanelLed()");
     int porcentajeDeProgreso = round(progreso / longitudDeCoordenadas) * 100;
     switch (porcentajeDeProgreso){
         case 25:
@@ -197,7 +201,7 @@ void actualizarPanelLed(){
 
 
 void puestaACero(){
-  Serial.println("FUNCION puestaACero()");
+    Serial.println("FUNCION puestaACero()");
         int finX = digitalRead(pinSensorX);
         int finY = digitalRead(pinSensorY);
         Serial.println("Retornando...");
@@ -206,16 +210,16 @@ void puestaACero(){
         Serial.println("finY = ");
         Serial.println(finY);
         while (finX == 0){
-          Serial.println("Retornando X...");
-          motorX.step(10);
-          finX = digitalRead(pinSensorX);
-          if (finX == 1){Serial.println("Cero X alcanzado");}
+            Serial.println("Retornando X...");
+            motorX.step(10);
+            finX = digitalRead(pinSensorX);
+            if (finX == 1){Serial.println("Cero X alcanzado");}
         }
         while (finY == 0){
-          Serial.println("Retornando Y...");
-          motorY.step(10);
-          finY = digitalRead(pinSensorY);
-          if (finY == 1){Serial.println("Cero Y alcanzado");}
+            Serial.println("Retornando Y...");
+            motorY.step(10);
+            finY = digitalRead(pinSensorY);
+            if (finY == 1){Serial.println("Cero Y alcanzado");}
         }
 }
 
