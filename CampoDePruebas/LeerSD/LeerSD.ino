@@ -1,6 +1,8 @@
 #include <SPI.h>
 #include <SD.h>
 
+const char coorFileName[] = "coordenadas.txt";
+
 File archivo_coordenadas = SD.open(coorFileName, FILE_READ);
 
 #define SDpin 53 
@@ -18,7 +20,6 @@ void iniciarTarjeta(){
         return;
     }
     Serial.println("Inicializacion exitosa");
-    inicioConExito = 1;
 }
 
 void leerDatos(){
@@ -36,5 +37,5 @@ void setup(){
 }
 
 void loop(){
-    leerDatos()
+    leerDatos();
 }
