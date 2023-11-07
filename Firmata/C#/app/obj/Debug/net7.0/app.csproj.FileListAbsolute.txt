@@ -1,0 +1,14 @@
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\bin\Debug\net7.0\app.exe
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\bin\Debug\net7.0\app.deps.json
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\bin\Debug\net7.0\app.runtimeconfig.json
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\bin\Debug\net7.0\app.dll
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\bin\Debug\net7.0\app.pdb
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\obj\Debug\net7.0\app.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\obj\Debug\net7.0\app.AssemblyInfoInputs.cache
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\obj\Debug\net7.0\app.AssemblyInfo.cs
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\obj\Debug\net7.0\app.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\obj\Debug\net7.0\app.dll
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\obj\Debug\net7.0\refint\app.dll
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\obj\Debug\net7.0\app.pdb
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\obj\Debug\net7.0\app.genruntimeconfig.cache
+C:\Users\Usuario\Documents\Cosas Lauty\CNC_PF_2023\CNC_PF\Firmata\C#\app\obj\Debug\net7.0\ref\app.dll
