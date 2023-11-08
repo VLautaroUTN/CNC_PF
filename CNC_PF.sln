@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Firmata", "Firmata", "{3F185AC6-437B-488A-98D4-0E9DDAA89882}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C#", "C#", "{B3BECAD4-579C-4470-8DB1-A910B411A630}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "app", "Firmata\C#\app\app.csproj", "{4EB9B32A-B5F3-497E-A3EA-1A7BBF16AD9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EB9B32A-B5F3-497E-A3EA-1A7BBF16AD9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EB9B32A-B5F3-497E-A3EA-1A7BBF16AD9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EB9B32A-B5F3-497E-A3EA-1A7BBF16AD9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EB9B32A-B5F3-497E-A3EA-1A7BBF16AD9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B3BECAD4-579C-4470-8DB1-A910B411A630} = {3F185AC6-437B-488A-98D4-0E9DDAA89882}
+		{4EB9B32A-B5F3-497E-A3EA-1A7BBF16AD9B} = {B3BECAD4-579C-4470-8DB1-A910B411A630}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F6368CA-D7FA-4616-BAD3-394E0D95D550}
+	EndGlobalSection
+EndGlobal
