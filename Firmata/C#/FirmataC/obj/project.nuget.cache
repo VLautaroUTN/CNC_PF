@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vD5sWtlMRn9LiIEdWesLZ8nHKmI+1nGNrrHt0MBdYk9GtrAxOAJwBXoL5exAxbfIFcIEPoJlbMTu6oPXKdZ80w==",
+  "dgSpecHash": "t23JiFyfZSSF6ZgZveZa7SiCcVUJXY0VXMskycjgp9OHRGv9POCDny6MIM9dvvrdn0volNmVd0STFU+rLE0b/w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Documents\\Cosas Lauty\\CNC_PF_2023\\CNC_PF\\Firmata\\C#\\app\\app.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Documents\\Cosas Lauty\\CNC_PF_2023\\CNC_PF\\Firmata\\C#\\FirmataC\\FirmataC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",

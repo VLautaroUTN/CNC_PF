@@ -483,21 +483,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuario\\Documents\\Cosas Lauty\\CNC_PF_2023\\CNC_PF\\Firmata\\C#\\app\\app.csproj",
-      "projectName": "app",
-      "projectPath": "C:\\Users\\Usuario\\Documents\\Cosas Lauty\\CNC_PF_2023\\CNC_PF\\Firmata\\C#\\app\\app.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\Documents\\Cosas Lauty\\CNC_PF_2023\\CNC_PF\\Firmata\\C#\\FirmataC\\FirmataC.csproj",
+      "projectName": "FirmataC",
+      "projectPath": "C:\\Users\\Usuario\\Documents\\Cosas Lauty\\CNC_PF_2023\\CNC_PF\\Firmata\\C#\\FirmataC\\FirmataC.csproj",
       "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario\\Documents\\Cosas Lauty\\CNC_PF_2023\\CNC_PF\\Firmata\\C#\\app\\obj\\",
+      "outputPath": "C:\\Users\\Usuario\\Documents\\Cosas Lauty\\CNC_PF_2023\\CNC_PF\\Firmata\\C#\\FirmataC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
