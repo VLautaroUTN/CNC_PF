@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Solid.Arduino;
 using Solid.Arduino.Firmata;
 
@@ -46,5 +47,10 @@ namespace Demo
             session.SetDigitalPin(13, false);
             Console.WriteLine("Command sent: LUZ13 off");
         }
+
+        private static void LeerArchivo(){
+            
+        }
+    
     }
 }
