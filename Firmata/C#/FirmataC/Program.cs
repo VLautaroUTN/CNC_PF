@@ -48,7 +48,8 @@ namespace Demo
             Console.WriteLine("Command sent: LUZ13 off");
         }
 
-        private static void LeerArchivo(){
+        private static void LeerArchivo()
+        {
             
         }
     
