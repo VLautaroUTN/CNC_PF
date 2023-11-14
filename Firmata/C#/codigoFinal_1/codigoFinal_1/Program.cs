@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using System.Threading;
 using Solid.Arduino.Firmata;
 using Solid.Arduino;
 
@@ -10,7 +10,7 @@ namespace codigoFinalIntento1
         static byte xFinalCarrera = 26;
         static byte yFinalCarrera = 27;
         static byte ServoPin = 28;
-        static byte[] motorX = { 2, 3, 4, 13 };
+        static byte[] motorX = { 2, 3, 4, 5 };
         static byte[] motorY = { 22, 23, 24, 25 };
 
 
@@ -22,9 +22,9 @@ namespace codigoFinalIntento1
             {
                 using var session = new ArduinoSession(connection);
                 // Establece los pines que se usaran como entrada o salida
-                ImprimirCircuito(session);
-                IniciarPines(session);
-                moverMotores(session, 500, motorX);
+                LeerCoordenadas(session);
+                //IniciarPines(session);
+                //moverMotores(session, 2000, motorX);
             }
             Console.WriteLine("Press a key");
             Console.ReadKey(true);
@@ -68,7 +68,7 @@ namespace codigoFinalIntento1
             return session;
         }
 
-        private static void ImprimirCircuito(IFirmataProtocol session)
+        private static void LeerCoordenadas(IFirmataProtocol session)
         {
             String line;
             String[] valoresTexto;
@@ -79,10 +79,10 @@ namespace codigoFinalIntento1
                 while (line != null)
                 {
                     line = sr.ReadLine();
-                    if (line != null){
+                    if (line != null) {
 
-                        valoresTexto = line.Split('/'); 
-                        if (valoresTexto[0] == "0"){
+                        valoresTexto = line.Split('/');
+                        if (valoresTexto[0] == "0") {
                             session.SetDigitalPin(ServoPin, 30);
                         }
                     }
@@ -101,41 +101,49 @@ namespace codigoFinalIntento1
 
         private static void moverMotores(IFirmataProtocol session, int numDePasos, byte[] pines)
         {
-            var t = Task.Run(async delegate
+            byte[,] paso =
             {
-                await Task.Delay(5000);
-                return 42;
-            });
-            byte[,] paso = 
-            { 
-                { 1, 0, 0, 0}, 
-                { 0, 1, 0, 0 }, 
+                { 1, 0, 0, 0},
+                { 0, 1, 0, 0 },
                 { 0, 0, 1, 0 },
                 { 0, 0, 0, 1 }
             };
+            byte demoraEntrePasos = 5;
             int pasosRealizados = 0;
             do
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    session.SetDigitalPin(pines[0], paso[i, 0]);
+                    session.SetDigitalPin(pines[0], TraducirByteABool(paso[i, 0]));
                     pasosRealizados++;
-                    session.SetDigitalPin(pines[1], paso[i, 1]);
+                    Thread.Sleep(demoraEntrePasos);
+                    if (pasosRealizados >= numDePasos) { break; }
+                    session.SetDigitalPin(pines[1], TraducirByteABool(paso[i, 1]));
                     pasosRealizados++;
-                    session.SetDigitalPin(pines[2], paso[i, 2]);
+                    Thread.Sleep(demoraEntrePasos);
+                    if (pasosRealizados >= numDePasos) { break; }
+                    session.SetDigitalPin(pines[2], TraducirByteABool(paso[i, 2]));
                     pasosRealizados++;
-                    session.SetDigitalPin(pines[3], paso[i, 3]);
+                    Thread.Sleep(demoraEntrePasos);
+                    if (pasosRealizados >= numDePasos) { break; }
+                    session.SetDigitalPin(pines[3], TraducirByteABool(paso[i, 3]));
                     pasosRealizados++;
+                    Thread.Sleep(demoraEntrePasos);
+                    if (pasosRealizados >= numDePasos) { break; }
+                    Thread.Sleep(demoraEntrePasos);
                     Console.WriteLine("Vuelta");
-                    t.Wait();
                 }
             } while (pasosRealizados < numDePasos);
             Console.WriteLine($"Pasos realizados: {pasosRealizados}");
             Console.WriteLine($"Num de pasos: {numDePasos}");
+        }
 
-
-
-
+        private static bool TraducirByteABool(byte estado)
+        {
+            bool respuesta = false;
+            if(estado == 0) { respuesta = false; }
+            if(estado == 1) { respuesta = true; }
+            return respuesta;
         }
     }
 }
